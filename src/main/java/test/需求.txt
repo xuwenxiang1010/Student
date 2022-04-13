@@ -1,0 +1,4 @@
+1.下拉框：年级：大一~大四
+2.radio单选：性别
+3.CheckBox：多选：兴趣爱好：Java，game，sport，shop
+4.附件：file标签：个人照片

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.bootdo.bestLink.dao.UserDao">
+	
+	<!-- 查询所有用户信息 -->
+	<select id="queryInfo" resultType="com.bootdo.bestLink.domain.User">
+		select * from user
+	</select>
+	
+	<!-- 批量插入信息 -->
+	<insert id="addUserInfo" parameterType="java.util.List">
+		insert into user
+		(
+			user_name,
+			user_age,
+			user_email
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+				#{item.userName},
+				#{item.userAge},
+				#{item.userEmail}
+			)
+		</foreach>
+	</insert>
+</mapper>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.system.dao.StuDao">
+
+	<select id="get" resultType="com.bootdo.system.domain.StuDO">
+		select * 
+		from sys_stu where stu_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.system.domain.StuDO">
+		select
+		*
+		from sys_stu
+		<where>
+			<if test="stuId != null and stuId != ''"> and stu_id = #{stuId} </if>
+			<if test="name != null and name != ''"> and name = #{name} </if>
+			<if test="age != null and age != ''"> and age = #{age} </if>
+			<if test="grade != null and grade != ''"> and grade = #{grade} </if>
+			<if test="mobile != null and mobile != ''"> and mobile = #{mobile} </if>
+			<if test="stuNo != null and stuNo != ''"> and stuNo = #{stuNo} </if>
+			<if test="sex != null and sex != ''"> and sex = #{sex} </if>
+			<if test="email != null and email != ''"> and email = #{email} </if>
+			<if test="schId != null and schId != ''"> and sch_id = #{schId} </if>
+			<if test="schIds != null and schIds.size() > 0">and sch_id in
+                <foreach collection="schIds" item="item" index="index" separator="," open="(" close=")">
+                    #{item}
+                </foreach>
+            </if>
+			<if test="courseIdNum != null and courseIdNum != ''"> and course_id_num = #{courseIdNum} </if>
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by stu_id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset} , #{limit}
+		</if> 
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(*) from sys_stu
+		<where>
+			<if test="stuId != null and stuId != ''"> and stu_id = #{stuId} </if>
+			<if test="name != null and name != ''"> and name = #{name} </if>
+			<if test="age != null and age != ''"> and age = #{age} </if>
+			<if test="grade != null and grade != ''"> and grade = #{grade} </if>
+			<if test="mobile != null and mobile != ''"> and mobile = #{mobile} </if>
+			<if test="stuNo != null and stuNo != ''"> and stuNo = #{stuNo} </if>
+			<if test="sex != null and sex != ''"> and sex = #{sex} </if>
+			<if test="email != null and email != ''"> and email = #{email} </if>
+			<if test="schId != null and schId != ''"> and sch_id = #{schId} </if>
+			<if test="courseIdNum != null and courseIdNum != ''"> and course_id_num = #{courseIdNum} </if>
+		</where>
+	</select>
+
+	<insert id="save" parameterType="com.bootdo.system.domain.StuDO"
+		useGeneratedKeys="true" keyProperty="stuId">
+		insert into sys_stu
+		(
+		`stu_id`,
+		`name`,
+		`age`,
+		`grade`,
+		`mobile`,
+		`stuNo`,
+		`sex`,
+		`email`,
+		`sch_id`,
+		`course_id_num`
+		)
+		values
+		(
+		#{stuId},
+		#{name},
+		#{age},
+		#{grade},
+		#{mobile},
+		#{stuNo},
+		#{sex},
+		#{email},
+		#{schId},
+		#{courseIdNum}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.bootdo.system.domain.StuDO">
+		update sys_stu
+		<set>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="age != null">`age` = #{age}, </if>
+			<if test="grade != null">`grade` = #{grade}, </if>
+			<if test="mobile != null">`mobile` = #{mobile}, </if>
+			<if test="stuNo != null">`stuNo` = #{stuNo},</if>
+			<if test="sex != null">`sex` = #{sex},</if>
+			<if test="email != null">`email` = #{email},</if>
+			<if test="schId != null">`sch_id` = #{schId},</if>
+			<if test="courseIdNum != null">`course_id_num` = #{courseIdNum}</if>
+			
+		</set>
+		where stu_id = #{stuId}
+	</update>
+
+	<delete id="remove">
+		delete from sys_stu where stu_id = #{value}
+	</delete>
+
+	<delete id="batchRemove">
+		delete from sys_stu where stu_id in
+		<foreach item="stuId" collection="array" open="(" separator="," close=")">
+			#{stuId}
+		</foreach>
+	</delete>
+	
+	<select id="listAllSch" resultType="long">
+		select DISTINCT sch_id from sys_stu
+	</select>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.bootdo.system.dao.StuCourseDao">
+	
+	<select id="get" resultType="com.bootdo.system.domain.StuCourseDO">
+		select * from sys_stu_course where id = #{value}
+	</select>
+	
+	<select id="list" resultType="com.bootdo.system.domain.StuCourseDO">
+		select * from sys_stu_course
+		<where>
+			<if test="id != null and id != ''"> and id = #{id} </if>
+			<if test="stuId != null and stuId != ''"> and stu_id = #{stuId} </if>
+			<if test="courseId != null and courseId != ''"> and course_id = #{courseId} </if>
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(*) from sys_stu_course
+		<where>
+			<if test="id != null and id != ''"> and id = #{id} </if>
+			<if test="stuId != null and stuId != ''"> and stu_id = #{stuId} </if>
+			<if test="courseId != null and courseId != ''"> and course_id = #{courseId} </if>
+		</where>
+	</select>
+
+	<insert id="save" parameterType="com.bootdo.system.domain.StuCourseDO"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into sys_stu_course
+		(
+		`id`,
+		`stu_id`,
+		`course_Id`
+		)
+		values
+		(
+		#{id},
+		#{stuId},
+		#{courseId}
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.bootdo.system.domain.StuCourseDO">
+		update sys_stu_course
+		<set>
+			<if test="stuId != null">`stu_id` = #{stuId},</if>
+			<if test="courseId != null">`course_id` = #{courseId}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from sys_stu_course where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from sys_stu_course where id in
+		<foreach item="id" collection="array" open="(" separator=","
+			close=")">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<select id="listCourseId" resultType="String">
+		select course_id from
+		sys_stu_course where
+		stu_id = #{stuId}
+	</select>
+	
+	<delete id="removeByStuId">
+		delete from sys_stu_course where stu_id=#{stuId}
+	</delete>
+
+	<delete id="removeByCourseId">
+		delete from sys_stu_course where course_id=#{couseId}
+	</delete>
+
+	<delete id="batchRemoveByStuId">
+		delete from sys_stu_course where stu_id in
+		<foreach item="stuId" collection="array" open="(" separator=","
+			close=")">
+			#{stuId}
+		</foreach>
+	</delete>
+
+	<insert id="batchSave">
+		INSERT INTO sys_stu_course(stu_id, course_id) values
+		<foreach item="item" index="index" collection="list"
+			separator=",">
+			(#{item.stuId},#{item.courseId})
+		</foreach>
+	</insert>
+</mapper>
