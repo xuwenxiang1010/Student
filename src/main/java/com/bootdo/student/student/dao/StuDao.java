@@ -3,19 +3,13 @@ package com.bootdo.student.student.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.bootdo.student.student.pojo.entity.StuDO;
 
-/*
- * 学生管理
- * 
- *@Description todo
- *@author xuwenxiang
- *@date 2021年9月18日下午10:38:58
- */
 @Mapper
-public interface StuDao {
+public interface StuDao extends BaseMapper<StuDO> {
 	
 	StuDO get(String stuId);
 	
