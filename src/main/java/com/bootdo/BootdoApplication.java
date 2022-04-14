@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 })
 @EnableTransactionManagement
 @ServletComponentScan
-@MapperScan("com.bootdo.*.dao")
+@MapperScan("com.bootdo.**.dao")
 @SpringBootApplication
 @EnableCaching
 public class BootdoApplication {
