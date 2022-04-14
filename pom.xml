@@ -65,6 +65,11 @@
             <artifactId>mybatis</artifactId>
             <version>3.4.4</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.DDLoveWorld</groupId>
+            <artifactId>common-query-mybatisplus</artifactId>
+            <version>1.0.1</version>
+        </dependency>
         <!-- lombok -->
         <dependency>
         	<groupId>org.projectlombok</groupId>
