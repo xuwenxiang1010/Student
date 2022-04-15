@@ -1,6 +1,7 @@
 package com.bootdo.activiti.service.impl;
 
 import com.bootdo.activiti.config.ActivitiConstant;
+import com.bootdo.activiti.service.ActTaskService;
 import com.bootdo.common.utils.StringUtils;
 import org.activiti.engine.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class SalaryServiceImpl implements SalaryService {
 	@Autowired
 	private SalaryDao salaryDao;
 	@Autowired
-	private ActTaskServiceImpl actTaskService;
+	private ActTaskService actTaskService;
 	
 	@Override
 	public SalaryDO get(String id){

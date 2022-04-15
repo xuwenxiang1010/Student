@@ -1,6 +1,7 @@
 package com.bootdo.activiti.service;
 
 import com.bootdo.activiti.domain.SalaryDO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import java.util.Map;
  * @email 1992lcg@163.com
  * @date 2017-11-25 13:33:16
  */
+@Service
 public interface SalaryService {
 	
 	SalaryDO get(String id);
