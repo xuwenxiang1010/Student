@@ -3,9 +3,8 @@ package com.bootdo.student.student.dao;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import com.bootdo.student.student.pojo.entity.StuCourseDO;
+import org.mapstruct.Mapper;
 
 /**
  * 学生课程

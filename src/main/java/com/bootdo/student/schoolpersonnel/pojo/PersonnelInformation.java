@@ -1,24 +1,19 @@
-package com.bootdo.work.schoolpersonnel.pojo;
+package com.bootdo.student.schoolpersonnel.pojo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.bootdo.worktools.enums.PersonnelInformationEnum;
 import lombok.Data;
 
 import java.util.Date;
 
 /**
- * @author WuYubang
+ * @author wyb
  * @date 2022年4月14日
  */
 @Data
-@TableName(value = "sch_personnel_information")
 public class PersonnelInformation {
     /**
      * 主键ID
      */
-    @TableId(type = IdType.AUTO)
     private Integer id;
 
     /**学校人员信息登记
@@ -49,8 +44,6 @@ public class PersonnelInformation {
      * 创建人
      */
     private String createBy;
-
-
     /**
      * 编辑人
      */
@@ -66,8 +59,13 @@ public class PersonnelInformation {
     /**
      * 身份性质名称
      */
-    @TableField(exist = false)
     private String natureName;
+    /**
+     * 删除（0未删除，1删除）
+     */
+    private int deleted;
 
-
+    public String getNatureName() {
+        return PersonnelInformationEnum.valueByCode(getNature());
+    }
 }

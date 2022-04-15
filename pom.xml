@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.3.RELEASE</version>
+        <version>2.0.4.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -65,11 +65,6 @@
             <artifactId>mybatis</artifactId>
             <version>3.4.4</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.DDLoveWorld</groupId>
-            <artifactId>common-query-mybatisplus</artifactId>
-            <version>1.0.1</version>
-        </dependency>
         <!-- lombok -->
         <dependency>
         	<groupId>org.projectlombok</groupId>
@@ -98,11 +93,11 @@
 		    <artifactId>pagehelper-spring-boot-starter</artifactId>
 		    <version>1.2.5</version>
 		</dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.1.1</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
