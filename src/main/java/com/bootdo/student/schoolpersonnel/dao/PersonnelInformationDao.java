@@ -18,4 +18,6 @@ public interface PersonnelInformationDao{
      * @return
      */
     List<PersonnelInformation> list(Map<String, Object> map);
+
+    int save(PersonnelInformation personnelInformation);
 }

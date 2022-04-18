@@ -2,9 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bootdo.student.schoolpersonnel.dao.PersonnelInformationDao">
+    <insert id="save" parameterType="com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation" useGeneratedKeys="true" keyProperty="id">
+        insert into sch_personnel_information
+        (`name`,
+         `nature`,
+         `healthy`,
+         `address`,
+         `in_time`,
+         `out_time`,
+         `create_by`,
+         `create_time`
+         )
+        values
+        (
+        #{name},
+        #{nature},
+        #{healthy},
+        #{address},
+        #{inTime},
+        #{outTime},
+        #{createBy},
+        #{createTime}
+        )
+    </insert>
 
     <select id="list" resultType="com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation">
-        select id, name, nature, healthy, address, in_time, out_time, create_by, update_by, create_time, update_time, deleted
+        select *
         from sch_personnel_information
         where deleted = 0
         <where>

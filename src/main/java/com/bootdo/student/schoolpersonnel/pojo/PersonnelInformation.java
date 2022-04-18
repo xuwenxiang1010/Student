@@ -2,6 +2,7 @@ package com.bootdo.student.schoolpersonnel.pojo;
 
 import com.bootdo.worktools.enums.PersonnelInformationEnum;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 

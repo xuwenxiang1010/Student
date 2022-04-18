@@ -1,14 +1,14 @@
 package com.bootdo.student.schoolpersonnel.service.impl;
 
-import com.bootdo.common.utils.Query;
+import com.bootdo.common.utils.R;
 import com.bootdo.student.schoolpersonnel.dao.PersonnelInformationDao;
 import com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation;
 import com.bootdo.student.schoolpersonnel.service.PersonnelInformationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author wyb
@@ -17,9 +17,19 @@ import java.util.Map;
 @Service
 public class PersonnelInformationServiceImpl implements PersonnelInformationService {
 
+    @Autowired
     private PersonnelInformationDao personnelInformationDao;
+
+
     @Override
     public List<PersonnelInformation> list() {
-        return personnelInformationDao.list(new HashMap<>(50));
+        List<PersonnelInformation> per = personnelInformationDao.list(new HashMap<>(50));
+        return per;
+    }
+
+    @Override
+    public int save(PersonnelInformation personnelInformation) {
+        int p = personnelInformationDao.save(personnelInformation);
+        return p;
     }
 }

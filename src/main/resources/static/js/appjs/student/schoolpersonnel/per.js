@@ -2,7 +2,6 @@ var prefix = "/student/schoolpersonnel";
 $(function() {
     load();
 });
-
 function load() {
     $('#exampleTable')
         .bootstrapTable(
@@ -33,11 +32,6 @@ function load() {
                 // sortOrder.
                 // 返回false将会终止请求
                 columns : [
-                    { // 列配置项
-                        // 数据类型，详细参数配置参见文档http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/
-                        checkbox : true
-                        // 列表中显示复选框
-                    },
                     {
                         field : 'name',
                         title : '名称'
@@ -68,10 +62,10 @@ function load() {
                         align : 'center',
                         formatter : function(value, row, index) {
                             var e = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
-                                + row.courseId
+                                + row.id
                                 + '\')"><i class="fa fa-edit"></i></a> ';
                             var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
-                                + row.courseId
+                                + row.id
                                 + '\')"><i class="fa fa-remove"></i></a> ';
                             return e + d;
                         }

@@ -1,27 +1,6 @@
 $().ready(function() {
-    laydate.render({
-        elem: '#inTime', //指定元素
-        type: 'datetime',
-        value: '',
-        ready: function(date){
-            $(".layui-laydate-footer [lay-type='datetime'].laydate-btns-time").click();
-            $(".laydate-main-list-0 .layui-laydate-content li ol li:last-child").click();
-            $(".layui-laydate-footer [lay-type='date'].laydate-btns-time").click();
-        }
-    });
-    laydate.render({
-        elem: '#outTime', //指定元素
-        type: 'datetime',
-        value: '',
-        ready: function(date){
-            $(".layui-laydate-footer [lay-type='datetime'].laydate-btns-time").click();
-            $(".laydate-main-list-0 .layui-laydate-content li ol li:last-child").click();
-            $(".layui-laydate-footer [lay-type='date'].laydate-btns-time").click();
-        }
-    });
     validateRule();
 });
-
 $.validator.setDefaults({
     submitHandler : function() {
         save();
@@ -50,7 +29,6 @@ function save() {
 
         }
     });
-
 }
 function validateRule() {
     var icon = "<i class='fa fa-times-circle'></i> ";
@@ -69,7 +47,7 @@ function validateRule() {
                 required : true
             },
             inTime : {
-                required : true
+                required : true,
             },
             outTime : {
                 required : true
@@ -93,7 +71,7 @@ function validateRule() {
             },
             outTime : {
                 required : icon + "请输入预计离校时间"
-            },
+            }
         }
     })
 }
