@@ -55,6 +55,7 @@ public class PersonnelInformationController extends BaseController {
     public R save(PersonnelInformationDto personnelInformationDto) throws ParseException {
         PersonnelInformation personnelInformation = new PersonnelInformation();
         SimpleDateFormat sdf = new SimpleDateFormat(format);
+
         personnelInformation.setCreateTime(new Date());
         personnelInformation.setCreateBy(getUsername());
         personnelInformation.setInTime(sdf.parse(personnelInformationDto.getInTime()));
