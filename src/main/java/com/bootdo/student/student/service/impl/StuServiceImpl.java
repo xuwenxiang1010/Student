@@ -45,7 +45,16 @@ public class StuServiceImpl implements StuService {
 		return stu;
 	}
 
-	
+	@Override
+	public  StuDO getName(String stuId){
+		return stuMapper.getName(stuId);
+	}
+
+	@Override
+	public List<StuDO> nameList(Map<String, Object> map) {
+		return stuMapper.nameList(map);
+	}
+
 	@Override
 	public List<StuDO> list(Map<String, Object> map) {
 		String schId = map.get("schId").toString();

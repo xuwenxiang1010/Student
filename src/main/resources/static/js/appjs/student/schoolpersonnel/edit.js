@@ -1,24 +1,4 @@
 $().ready(function() {
-    laydate.render({
-        elem: '#inTime', //指定元素
-        type: 'datetime',
-        value: '',
-        ready: function(date){
-            $(".layui-laydate-footer [lay-type='datetime'].laydate-btns-time").click();
-            $(".laydate-main-list-0 .layui-laydate-content li ol li:last-child").click();
-            $(".layui-laydate-footer [lay-type='date'].laydate-btns-time").click();
-        }
-    });
-    laydate.render({
-        elem: '#outTime', //指定元素
-        type: 'datetime',
-        value: '',
-        ready: function(date){
-            $(".layui-laydate-footer [lay-type='datetime'].laydate-btns-time").click();
-            $(".laydate-main-list-0 .layui-laydate-content li ol li:last-child").click();
-            $(".layui-laydate-footer [lay-type='date'].laydate-btns-time").click();
-        }
-    });
     validateRule();
 });
 
@@ -28,6 +8,7 @@ $.validator.setDefaults({
     }
 });
 function update() {
+    $("#nameId").val(getCheckedName());
     $.ajax({
         cache : true,
         type : "POST",
@@ -43,29 +24,29 @@ function update() {
                 parent.reLoad();
                 var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
                 parent.layer.close(index);
-
             } else {
                 parent.layer.alert(data.msg)
             }
-
         }
     });
 
+}
+function getCheckedName(){
+    var adIds = "";
+    $("input:checkbox[name=name]:checked").each(function(i) {
+        if (0 == i) {
+            adIds = $(this).val();
+        } else {
+            adIds += ("," + $(this).val());
+        }
+    });
+    return adIds;
 }
 function validateRule() {
     var icon = "<i class='fa fa-times-circle'></i> ";
     $("#signupForm").validate({
         rules : {
             name : {
-                required : true
-            },
-            nature : {
-                required : true
-            },
-            healthy : {
-                required : true
-            },
-            address : {
                 required : true
             },
             inTime : {
@@ -79,21 +60,12 @@ function validateRule() {
             name : {
                 required : icon + "请输入名称"
             },
-            nature : {
-                required : icon + "请选择身份性质"
-            },
-            healthy : {
-                required : icon + "请输入健康状况"
-            },
-            address  : {
-                required : icon + "请输入目前居住地址"
-            },
             inTime : {
                 required : icon + "请输入入校时间"
             },
             outTime : {
                 required : icon + "请输入预计离校时间"
-            },
+            }
         }
     })
 }

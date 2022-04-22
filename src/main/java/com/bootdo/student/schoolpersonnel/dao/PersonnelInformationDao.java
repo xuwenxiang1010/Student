@@ -1,5 +1,6 @@
 package com.bootdo.student.schoolpersonnel.dao;
 
+import com.bootdo.student.schoolpersonnel.dto.PersonnelInformationDto;
 import com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -20,4 +21,10 @@ public interface PersonnelInformationDao{
     List<PersonnelInformation> list(Map<String, Object> map);
 
     int save(PersonnelInformation personnelInformation);
+
+    PersonnelInformation get(Integer id);
+
+    int update(PersonnelInformation personnelInformation);
+
+    int remove(PersonnelInformation personnelInformation);
 }

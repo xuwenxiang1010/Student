@@ -1,5 +1,6 @@
 package com.bootdo.student.student.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -29,4 +30,8 @@ public interface StuService {
 	
 	Tree<SchoolDO> getTree();
 	Set<String> listCourses(String stuId);
+
+	StuDO getName(String nameId);
+
+	List<StuDO> nameList(Map<String, Object> map);
 }

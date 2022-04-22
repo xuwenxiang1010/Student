@@ -9,26 +9,37 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <form class="form-horizontal m-t" id="signupForm">
-                        <input id="id" name="id" th:value="${param.id}"
+                        <input id="id" name="id" th:value="${per.id}"
                                type="hidden">
+                        <input type="hidden" name="nameId" id="nameId" th:value="${nameId}">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">名称：</label>
+                            <label class="col-sm-3 control-label">姓名：</label>
                             <div class="col-sm-8">
-                                <input id="name" name="name" th:value="${param.name}"
-                                       class="form-control" type="text">
+                                <label th:each="peo:${name}" class="checkbox-inline">
+                                    <input name="name" type="checkbox" th:value="${peo.nameId}"
+                                           th:text="${peo.name}" th:checked="${peo.peoSign}">
+                                </label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">类别：</label>
+                            <label class="col-sm-3 control-label">入校时间：</label>
                             <div class="col-sm-8">
-                                <select id="nature" name="nature" th:field="${param.nature}" class="form-control">
-                                    <option value="">-请选择-</option>
-                                    <option value="1">学生</option>
-                                    <option value="2">老师</option>
-                                    <option value="3">管理人员</option>
-                                    <option value="4">校外人员</option>
-                                    <option value="5">商人</option>
-                                </select>
+                                <input id="inTime" name="inTime" th:value="${per.inTime}"
+                                       class="form-control" type="datetime-local" step="1" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">预计离校时间：</label>
+                            <div class="col-sm-8">
+                                <input id="outTime" name="outTime" th:value="${per.outTime}"
+                                       class="form-control" type="datetime-local" step="1" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">目前状态：</label>
+                            <div class="col-sm-8">
+                                <input id="stateName" name="stateName" th:value="${per.stateName}"
+                                       class="form-control" type="text" readonly>
                             </div>
                         </div>
                         <!--

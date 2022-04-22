@@ -1,8 +1,6 @@
 package com.bootdo.student.schoolpersonnel.pojo;
-
-import com.bootdo.worktools.enums.PersonnelInformationEnum;
+import com.bootdo.worktools.enums.PersonnelStateEnum;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -18,21 +16,9 @@ public class PersonnelInformation {
     private Integer id;
 
     /**学校人员信息登记
-     *姓名
+     *人员id
      */
-    private String name;
-    /**
-     * 身份性质（1：学生，2：老师，3：管理人员，4：校外人员，5：商人）
-     */
-    private Integer nature;
-    /**
-     *健康情况
-     */
-    private String healthy;
-    /**
-     * 住址
-     */
-    private String address;
+    private String nameId;
     /**
      * 入校时间
      */
@@ -58,15 +44,23 @@ public class PersonnelInformation {
      */
     private Date updateTime;
     /**
-     * 身份性质名称
+     * 名称
      */
-    private String natureName;
+    private String name;
     /**
      * 删除（0未删除，1删除）
      */
     private int deleted;
+    /**
+     * 目前状态（1，未入校，2.在校内，3，已离校）
+     */
+    private Integer state;
+    /**
+     * 目前状态名称
+     */
+    private String stateName;
 
-    public String getNatureName() {
-        return PersonnelInformationEnum.valueByCode(getNature());
+    public String getStateName() {
+        return PersonnelStateEnum.valueByCode(getState());
     }
 }

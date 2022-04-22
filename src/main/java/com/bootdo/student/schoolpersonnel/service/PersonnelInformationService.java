@@ -2,6 +2,7 @@ package com.bootdo.student.schoolpersonnel.service;
 
 import com.bootdo.common.utils.Query;
 import com.bootdo.common.utils.R;
+import com.bootdo.student.schoolpersonnel.dto.PersonnelInformationDto;
 import com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation;
 import org.springframework.stereotype.Service;
 
@@ -21,4 +22,10 @@ public interface PersonnelInformationService {
     List<PersonnelInformation> list();
 
     int save(PersonnelInformation personnelInformation);
+
+    PersonnelInformation get(Integer id);
+
+    int update(PersonnelInformation personnelInformation);
+
+    int remove(PersonnelInformation personnelInformation);
 }

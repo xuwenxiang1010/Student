@@ -1,6 +1,5 @@
 package com.bootdo.student.schoolpersonnel.service.impl;
 
-import com.bootdo.common.utils.R;
 import com.bootdo.student.schoolpersonnel.dao.PersonnelInformationDao;
 import com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation;
 import com.bootdo.student.schoolpersonnel.service.PersonnelInformationService;
@@ -29,7 +28,23 @@ public class PersonnelInformationServiceImpl implements PersonnelInformationServ
 
     @Override
     public int save(PersonnelInformation personnelInformation) {
-        int p = personnelInformationDao.save(personnelInformation);
-        return p;
+        return personnelInformationDao.save(personnelInformation);
     }
+
+    @Override
+    public PersonnelInformation get(Integer id) {
+        PersonnelInformation personnelInformation = personnelInformationDao.get(id);
+        return personnelInformation;
+    }
+
+    @Override
+    public int update(PersonnelInformation personnelInformation) {
+        return personnelInformationDao.update(personnelInformation);
+    }
+
+    @Override
+    public int remove(PersonnelInformation personnelInformation) {
+        return personnelInformationDao.remove(personnelInformation);
+    }
+
 }

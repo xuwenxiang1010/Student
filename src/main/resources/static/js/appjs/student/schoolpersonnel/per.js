@@ -37,24 +37,16 @@ function load() {
                         title : '名称'
                     },
                     {
-                        field : 'natureName',
-                        title : '身份类别'
-                    },
-                    {
-                        field : 'healthy',
-                        title : '健康状况'
-                    },
-                    {
-                        field : 'address',
-                        title : '目前居住地'
-                    },
-                    {
                         field : 'inTime',
                         title : '入校时间'
                     },
                     {
                         field : 'outTime',
                         title : '预计离校时间'
+                    },
+                    {
+                        field : 'stateName',
+                        title : '目前状态'
                     },
                     {
                         title : '操作',

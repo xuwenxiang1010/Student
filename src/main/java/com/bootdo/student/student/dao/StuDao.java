@@ -26,4 +26,7 @@ public interface StuDao {
 	
 	Long[] listAllSch();
 
+    StuDO getName(String stuId);
+
+	List<StuDO> nameList(Map<String, Object> map);
 }

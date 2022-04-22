@@ -6,7 +6,19 @@ $.validator.setDefaults({
         save();
     }
 });
+function getCheckedName(){
+    var adIds = "";
+    $("input:checkbox[name=name]:checked").each(function(i) {
+        if (0 == i) {
+            adIds = $(this).val();
+        } else {
+            adIds += ("," + $(this).val());
+        }
+    });
+    return adIds;
+}
 function save() {
+    $("#nameId").val(getCheckedName());
     $.ajax({
         cache : true,
         type : "POST",
@@ -26,7 +38,6 @@ function save() {
             } else {
                 parent.layer.alert(data.msg)
             }
-
         }
     });
 }
@@ -38,12 +49,6 @@ function validateRule() {
                 required : true
             },
             nature : {
-                required : true
-            },
-            healthy : {
-                required : true
-            },
-            address : {
                 required : true
             },
             inTime : {
@@ -59,12 +64,6 @@ function validateRule() {
             },
             nature : {
                 required : icon + "请选择身份性质"
-            },
-            healthy : {
-                required : icon + "请输入健康状况"
-            },
-            address  : {
-                required : icon + "请输入目前居住地址"
             },
             inTime : {
                 required : icon + "请输入入校时间"

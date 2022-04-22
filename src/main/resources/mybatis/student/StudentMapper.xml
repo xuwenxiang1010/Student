@@ -119,4 +119,13 @@
 	<select id="listAllSch" resultType="long">
 		select DISTINCT sch_id from sys_stu
 	</select>
+	<select id="getName" resultType="com.bootdo.student.student.pojo.entity.StuDO">
+		select name
+		from sys_stu
+		where stu_id = #{stuId}
+	</select>
+	<select id="nameList" resultType="com.bootdo.student.student.pojo.entity.StuDO">
+		select name
+		from sys_stu
+	</select>
 </mapper>

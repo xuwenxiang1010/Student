@@ -4,35 +4,50 @@
 <mapper namespace="com.bootdo.student.schoolpersonnel.dao.PersonnelInformationDao">
     <insert id="save" parameterType="com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation" useGeneratedKeys="true" keyProperty="id">
         insert into sch_personnel_information
-        (`name`,
-         `nature`,
-         `healthy`,
-         `address`,
+        (`name_id`,
          `in_time`,
          `out_time`,
          `create_by`,
-         `create_time`
+         `create_time`,
+         `state`
          )
         values
         (
-        #{name},
-        #{nature},
-        #{healthy},
-        #{address},
+        #{nameId},
         #{inTime},
         #{outTime},
         #{createBy},
-        #{createTime}
+        #{createTime},
+        #{state}
         )
     </insert>
+    <update id="update" parameterType="com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation">
+        update sch_personnel_information
+        <set>
+            <if test="nameId != null">`name_id` = #{nameId},</if>
+            <if test="inTime != null">`in_time` = #{inTime},</if>
+            <if test="outTime != null">`out_time` = #{outTime},</if>
+            <if test="updateBy != null">`update_by` = #{updateBy},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime},</if>
+            <if test="state != null">`state` = #{state},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="remove" parameterType="com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation">
+        update sch_personnel_information
+        <set>
+            <if test="deleted != null">`deleted` = #{deleted}</if>
+        </set>
+        where id = #{id}
+    </update>
 
     <select id="list" resultType="com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation">
-        select *
-        from sch_personnel_information
-        where deleted = 0
+        select spi.*,st.name
+        from sch_personnel_information spi left join sys_stu st on spi.name_id = st.stu_id
+        where spi.deleted = 0
         <where>
-            <if test="name != null and name != ''">
-             and name like concat('%',#{name},'%')
+            <if test="state != null and state != ''">
+                and state = #{state}
             </if>
         </where>
         <choose>
@@ -46,5 +61,10 @@
         <if test="offset != null and limit != null">
             limit #{offset}, #{limit}
         </if>
+    </select>
+    <select id="get" resultType="com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation">
+        select spi.id, st.stu_id,spi.in_time, spi.out_time,spi.state,st.name
+        from sch_personnel_information spi left join sys_stu st on spi.name_id = st.stu_id
+        where id = #{id}
     </select>
 </mapper>
