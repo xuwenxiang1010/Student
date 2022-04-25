@@ -45,9 +45,8 @@ public class PersonnelInformationController extends BaseController {
 
     @GetMapping("/add")
     public String add(Model model){
-        List<StuDO> stuId = stuService.nameList(new HashMap<>(50));
-
-        model.addAttribute("peo",stuId);
+        List<StuDO> resList = forList();
+        model.addAttribute("peo",resList);
         return prefix + "/add";
     }
 
@@ -63,8 +62,7 @@ public class PersonnelInformationController extends BaseController {
             BeanUtils.copyProperties(personnelInformationDto,personnelInformation);
             personnelInformation.setInTime(sdf.parse(personnelInformationDto.getInTime()));
             personnelInformation.setOutTime(sdf.parse(personnelInformationDto.getOutTime()));
-            String stuId = personnelInformationDto.getStuId();
-            personnelInformation.setStuId(stuId);
+            personnelInformation.setStuId(personnelInformationDto.getStuId());
             int days = dayNumber(personnelInformationDto.getInTime(),personnelInformationDto.getOutTime());
             if (days >= 1){
                 personnelInformation.setState(timeCompare(personnelInformation.getInTime(),personnelInformation.getOutTime()));
@@ -84,9 +82,8 @@ public class PersonnelInformationController extends BaseController {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         personnelInformationDto.setInTime(sdf.format(personnelInformation.getInTime()));
         personnelInformationDto.setOutTime(sdf.format(personnelInformation.getOutTime()));
+        personnelInformationDto.setName(stuService.getName(personnelInformation.getStuId()));
         model.addAttribute("per",personnelInformationDto);
-        List<StuDO> name = stuService.nameList(new HashMap<>(50));
-        model.addAttribute("peo",name);
         return prefix + "/edit";
     }
 
@@ -162,6 +159,30 @@ public class PersonnelInformationController extends BaseController {
         en.setTime(end);
         days = ((int)(en.getTime().getTime()/1000)-(int)(st.getTime().getTime()/1000))/(60*60*24);
         return days;
+    }
+
+    /**
+     * 剔除已记录的学生
+     * @return
+     */
+    public List<StuDO> forList(){
+        List<StuDO> stuIdList = stuService.nameList(new HashMap<>(50));
+        List<PersonnelInformation> pStu = personnelInformationService.stuLdList(new HashMap<>(50));
+        List<StuDO> resList = new ArrayList<>();
+        for (StuDO stuDO : stuIdList){
+            int n=0;
+            String stId1 = stuDO.getStuId();
+            for (PersonnelInformation personnelInformation : pStu){
+                String stuId2 = personnelInformation.getStuId();
+                if (stId1.equals(stuId2)){
+                    n++;
+                }
+            }
+            if (n==0){
+                resList.add(stuDO);
+            }
+        }
+        return resList;
     }
 
 }

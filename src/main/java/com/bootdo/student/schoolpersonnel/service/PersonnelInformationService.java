@@ -6,6 +6,7 @@ import com.bootdo.student.schoolpersonnel.dto.PersonnelInformationDto;
 import com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,4 +29,6 @@ public interface PersonnelInformationService {
     int update(PersonnelInformation personnelInformation);
 
     int remove(PersonnelInformation personnelInformation);
+
+    List<PersonnelInformation> stuLdList(Map<String, Object> map);
 }

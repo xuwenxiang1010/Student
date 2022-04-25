@@ -11,14 +11,11 @@
                     <form class="form-horizontal m-t" id="signupForm">
                         <input id="id" name="id" th:value="${per.id}"
                                type="hidden">
-                        <input type="hidden" name="nameId" id="nameId" th:value="${nameId}">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">姓名：</label>
                             <div class="col-sm-8">
-                                <label th:each="peo:${name}" class="checkbox-inline">
-                                    <input name="name" type="checkbox" th:value="${peo.nameId}"
-                                           th:text="${peo.name}" th:checked="${peo.peoSign}">
-                                </label>
+                                <input id="name" name="name" th:value="${per.name}"
+                                       class="form-control" type="text" readonly>
                             </div>
                         </div>
                         <div class="form-group">

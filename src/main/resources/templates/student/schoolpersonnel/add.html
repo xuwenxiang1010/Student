@@ -16,7 +16,7 @@
                             <div class="col-sm-8">
                                 <select id="stuId" name="stuId" class="form-control" required>
                                     <option value="">请选择</option>
-                                    <option th:each="list:${peo}" th:value="list.stuId" th:text="${list.name}"></option>
+                                    <option th:each="list:${peo}" th:value="${list.stuId}" th:text="${list.name}"></option>
                                 </select>
                             </div>
                         </div>

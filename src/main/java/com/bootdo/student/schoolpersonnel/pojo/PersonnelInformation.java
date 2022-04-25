@@ -65,6 +65,4 @@ public class PersonnelInformation {
     public String getStateName() {
         return PersonnelStateEnum.valueByCode(getState());
     }
-
-    private List<String> stuIds;
 }

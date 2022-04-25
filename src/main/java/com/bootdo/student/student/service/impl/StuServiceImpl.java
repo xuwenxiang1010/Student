@@ -46,7 +46,7 @@ public class StuServiceImpl implements StuService {
 	}
 
 	@Override
-	public  StuDO getName(String stuId){
+	public  String getName(String stuId){
 		return stuMapper.getName(stuId);
 	}
 

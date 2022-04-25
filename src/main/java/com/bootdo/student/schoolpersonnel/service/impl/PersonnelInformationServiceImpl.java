@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author wyb
@@ -45,6 +46,11 @@ public class PersonnelInformationServiceImpl implements PersonnelInformationServ
     @Override
     public int remove(PersonnelInformation personnelInformation) {
         return personnelInformationDao.remove(personnelInformation);
+    }
+
+    @Override
+    public List<PersonnelInformation> stuLdList(Map<String, Object> map) {
+        return personnelInformationDao.stuIdList(map);
     }
 
 }

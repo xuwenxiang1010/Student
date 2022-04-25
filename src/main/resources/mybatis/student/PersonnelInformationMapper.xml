@@ -67,4 +67,9 @@
         from sch_personnel_information spi left join sys_stu st on spi.stu_id = st.stu_id
         where id = #{id}
     </select>
+    <select id="stuIdList" resultType="com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation">
+        select stu_id
+        from student.sch_personnel_information
+        where deleted = 0
+    </select>
 </mapper>

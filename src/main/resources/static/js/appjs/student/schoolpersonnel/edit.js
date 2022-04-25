@@ -8,7 +8,6 @@ $.validator.setDefaults({
     }
 });
 function update() {
-    $("#nameId").val(getCheckedName());
     $.ajax({
         cache : true,
         type : "POST",
@@ -30,17 +29,6 @@ function update() {
         }
     });
 
-}
-function getCheckedName(){
-    var adIds = "";
-    $("input:checkbox[name=name]:checked").each(function(i) {
-        if (0 == i) {
-            adIds = $(this).val();
-        } else {
-            adIds += ("," + $(this).val());
-        }
-    });
-    return adIds;
 }
 function validateRule() {
     var icon = "<i class='fa fa-times-circle'></i> ";

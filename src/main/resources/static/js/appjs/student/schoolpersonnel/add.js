@@ -6,19 +6,7 @@ $.validator.setDefaults({
         save();
     }
 });
-function getCheckedName(){
-    var adId = "";
-    $("input:checkbox[name=name]:checked").each(function(i) {
-        if (0 == i) {
-            adId = $(this).val();
-        } else {
-            adId += ("," + $(this).val());
-        }
-    });
-    return adId;
-}
 function save() {
-    $("#nameId").val(getCheckedName());
     $.ajax({
         cache : true,
         type : "POST",

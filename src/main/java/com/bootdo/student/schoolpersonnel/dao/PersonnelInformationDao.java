@@ -27,4 +27,6 @@ public interface PersonnelInformationDao{
     int update(PersonnelInformation personnelInformation);
 
     int remove(PersonnelInformation personnelInformation);
+
+    List<PersonnelInformation> stuIdList(Map<String, Object> map);
 }
