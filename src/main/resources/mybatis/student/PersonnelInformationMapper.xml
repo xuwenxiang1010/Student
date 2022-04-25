@@ -4,7 +4,7 @@
 <mapper namespace="com.bootdo.student.schoolpersonnel.dao.PersonnelInformationDao">
     <insert id="save" parameterType="com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation" useGeneratedKeys="true" keyProperty="id">
         insert into sch_personnel_information
-        (`name_id`,
+        (`stu_id`,
          `in_time`,
          `out_time`,
          `create_by`,
@@ -13,7 +13,7 @@
          )
         values
         (
-        #{nameId},
+        #{stuId},
         #{inTime},
         #{outTime},
         #{createBy},
@@ -24,7 +24,7 @@
     <update id="update" parameterType="com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation">
         update sch_personnel_information
         <set>
-            <if test="nameId != null">`name_id` = #{nameId},</if>
+            <if test="stuId != null">`stu_id` = #{nameId},</if>
             <if test="inTime != null">`in_time` = #{inTime},</if>
             <if test="outTime != null">`out_time` = #{outTime},</if>
             <if test="updateBy != null">`update_by` = #{updateBy},</if>
@@ -43,7 +43,7 @@
 
     <select id="list" resultType="com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation">
         select spi.*,st.name
-        from sch_personnel_information spi left join sys_stu st on spi.name_id = st.stu_id
+        from sch_personnel_information spi left join sys_stu st on spi.stu_id = st.stu_id
         where spi.deleted = 0
         <where>
             <if test="state != null and state != ''">
@@ -64,7 +64,7 @@
     </select>
     <select id="get" resultType="com.bootdo.student.schoolpersonnel.pojo.PersonnelInformation">
         select spi.id, st.stu_id,spi.in_time, spi.out_time,spi.state,st.name
-        from sch_personnel_information spi left join sys_stu st on spi.name_id = st.stu_id
+        from sch_personnel_information spi left join sys_stu st on spi.stu_id = st.stu_id
         where id = #{id}
     </select>
 </mapper>

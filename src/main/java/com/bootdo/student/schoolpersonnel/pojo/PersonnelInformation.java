@@ -1,8 +1,10 @@
 package com.bootdo.student.schoolpersonnel.pojo;
+import com.bootdo.student.schoolpersonnel.controller.PersonnelInformationController;
 import com.bootdo.worktools.enums.PersonnelStateEnum;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author wyb
@@ -18,7 +20,7 @@ public class PersonnelInformation {
     /**学校人员信息登记
      *人员id
      */
-    private String nameId;
+    private String stuId;
     /**
      * 入校时间
      */
@@ -63,4 +65,6 @@ public class PersonnelInformation {
     public String getStateName() {
         return PersonnelStateEnum.valueByCode(getState());
     }
+
+    private List<String> stuIds;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body class="gray-bg">
@@ -11,14 +11,13 @@
                     <form class="form-horizontal m-t" id="signupForm">
                         <!---->
                         <input id="id" name="id" type="hidden">
-                        <input type="hidden" name="nameId" id="nameId">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">姓名：</label>
                             <div class="col-sm-8">
-                                <label th:each="peo:${name}" class="checkbox-inline">
-                                    <input name="name" type="checkbox" th:value="${peo.nameId}"
-                                           th:text="${peo.name}">
-                                </label>
+                                <select id="stuId" name="stuId" class="form-control" required>
+                                    <option value="">请选择</option>
+                                    <option th:each="list:${peo}" th:value="list.stuId" th:text="${list.name}"></option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">

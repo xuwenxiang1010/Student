@@ -10,7 +10,7 @@ public class PersonnelInformationDto {
 
     private Integer id;
 
-    private String nameId;
+    private String stuId;
     /**
      * 入校时间
      */

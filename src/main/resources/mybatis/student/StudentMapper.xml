@@ -125,7 +125,7 @@
 		where stu_id = #{stuId}
 	</select>
 	<select id="nameList" resultType="com.bootdo.student.student.pojo.entity.StuDO">
-		select name
+		select stu_id,name
 		from sys_stu
 	</select>
 </mapper>

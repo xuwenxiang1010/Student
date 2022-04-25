@@ -14,10 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author wyb
@@ -48,8 +45,9 @@ public class PersonnelInformationController extends BaseController {
 
     @GetMapping("/add")
     public String add(Model model){
-        List<StuDO> name = stuService.nameList(new HashMap<>(50));
-        model.addAttribute("peo",name);
+        List<StuDO> stuId = stuService.nameList(new HashMap<>(50));
+
+        model.addAttribute("peo",stuId);
         return prefix + "/add";
     }
 
@@ -65,7 +63,8 @@ public class PersonnelInformationController extends BaseController {
             BeanUtils.copyProperties(personnelInformationDto,personnelInformation);
             personnelInformation.setInTime(sdf.parse(personnelInformationDto.getInTime()));
             personnelInformation.setOutTime(sdf.parse(personnelInformationDto.getOutTime()));
-            personnelInformation.setNameId(personnelInformationDto.getNameId());
+            String stuId = personnelInformationDto.getStuId();
+            personnelInformation.setStuId(stuId);
             int days = dayNumber(personnelInformationDto.getInTime(),personnelInformationDto.getOutTime());
             if (days >= 1){
                 personnelInformation.setState(timeCompare(personnelInformation.getInTime(),personnelInformation.getOutTime()));
@@ -102,7 +101,7 @@ public class PersonnelInformationController extends BaseController {
             personnelInformation.setUpdateTime(new Date());
             personnelInformation.setInTime(sdf.parse(personnelInformationDto.getInTime()));
             personnelInformation.setOutTime(sdf.parse(personnelInformationDto.getOutTime()));
-            personnelInformation.setNameId(personnelInformationDto.getNameId());
+            personnelInformation.setStuId(personnelInformationDto.getStuId());
             int days = dayNumber(personnelInformationDto.getInTime(),personnelInformationDto.getOutTime());
             if (days >=1){
                 personnelInformation.setState(timeCompare(personnelInformation.getInTime(),personnelInformation.getOutTime()));

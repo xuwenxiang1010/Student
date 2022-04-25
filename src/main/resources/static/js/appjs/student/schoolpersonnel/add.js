@@ -7,15 +7,15 @@ $.validator.setDefaults({
     }
 });
 function getCheckedName(){
-    var adIds = "";
+    var adId = "";
     $("input:checkbox[name=name]:checked").each(function(i) {
         if (0 == i) {
-            adIds = $(this).val();
+            adId = $(this).val();
         } else {
-            adIds += ("," + $(this).val());
+            adId += ("," + $(this).val());
         }
     });
-    return adIds;
+    return adId;
 }
 function save() {
     $("#nameId").val(getCheckedName());
